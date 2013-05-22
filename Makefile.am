@@ -1,1 +1,1 @@
-SUBDIRS=procure examples
+SUBDIRS=procure examples tests

@@ -41,8 +41,8 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 target_triplet = @target@
-noinst_PROGRAMS = example$(EXEEXT)
-subdir = examples
+noinst_PROGRAMS = interval$(EXEEXT)
+subdir = tests
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -53,12 +53,12 @@ CONFIG_HEADER = $(top_builddir)/procure/config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 PROGRAMS = $(noinst_PROGRAMS)
-am_example_OBJECTS = example-example.$(OBJEXT)
-example_OBJECTS = $(am_example_OBJECTS)
-example_LDADD = $(LDADD)
-example_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
-	$(example_LDFLAGS) $(LDFLAGS) -o $@
+am_interval_OBJECTS = interval-interval.$(OBJEXT)
+interval_OBJECTS = $(am_interval_OBJECTS)
+interval_LDADD = $(LDADD)
+interval_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
+	$(CXXFLAGS) $(interval_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/procure
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 am__depfiles_maybe = depfiles
@@ -72,8 +72,8 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(example_SOURCES)
-DIST_SOURCES = $(example_SOURCES)
+SOURCES = $(interval_SOURCES)
+DIST_SOURCES = $(interval_SOURCES)
 ETAGS = etags
 CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -216,13 +216,13 @@ top_srcdir = @top_srcdir@
 # '_SOURCES' for example.
 
 # Sources for the a.out 
-example_SOURCES = example.cpp
+interval_SOURCES = interval.cpp
 
 # Linker options for a.out
-example_LDFLAGS = -L$(top_srcdir)/procure -lprocure $(INTERVAL_LIBS) $(CXX11_LDFLAGS)
+interval_LDFLAGS = -L$(top_srcdir)/procure -lprocure $(INTERVAL_ALL_LIBS) $(CXX11_LDFLAGS)
 
 # Compiler options for a.out
-example_CPPFLAGS = -I$(top_srcdir) $(CXX11_CPPFLAGS)
+interval_CPPFLAGS = -I$(top_srcdir) $(CXX11_CPPFLAGS)
 all: all-am
 
 .SUFFIXES:
@@ -236,9 +236,9 @@ $(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu examples/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --gnu tests/Makefile'; \
 	$(am__cd) $(top_srcdir) && \
-	  $(AUTOMAKE) --gnu examples/Makefile
+	  $(AUTOMAKE) --gnu tests/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -266,9 +266,9 @@ clean-noinstPROGRAMS:
 	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
 	echo " rm -f" $$list; \
 	rm -f $$list
-example$(EXEEXT): $(example_OBJECTS) $(example_DEPENDENCIES) 
-	@rm -f example$(EXEEXT)
-	$(example_LINK) $(example_OBJECTS) $(example_LDADD) $(LIBS)
+interval$(EXEEXT): $(interval_OBJECTS) $(interval_DEPENDENCIES) 
+	@rm -f interval$(EXEEXT)
+	$(interval_LINK) $(interval_OBJECTS) $(interval_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -276,7 +276,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/example-example.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interval-interval.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -299,19 +299,19 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-example-example.o: example.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(example_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT example-example.o -MD -MP -MF $(DEPDIR)/example-example.Tpo -c -o example-example.o `test -f 'example.cpp' || echo '$(srcdir)/'`example.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/example-example.Tpo $(DEPDIR)/example-example.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='example.cpp' object='example-example.o' libtool=no @AMDEPBACKSLASH@
+interval-interval.o: interval.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(interval_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT interval-interval.o -MD -MP -MF $(DEPDIR)/interval-interval.Tpo -c -o interval-interval.o `test -f 'interval.cpp' || echo '$(srcdir)/'`interval.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/interval-interval.Tpo $(DEPDIR)/interval-interval.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='interval.cpp' object='interval-interval.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(example_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o example-example.o `test -f 'example.cpp' || echo '$(srcdir)/'`example.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(interval_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o interval-interval.o `test -f 'interval.cpp' || echo '$(srcdir)/'`interval.cpp
 
-example-example.obj: example.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(example_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT example-example.obj -MD -MP -MF $(DEPDIR)/example-example.Tpo -c -o example-example.obj `if test -f 'example.cpp'; then $(CYGPATH_W) 'example.cpp'; else $(CYGPATH_W) '$(srcdir)/example.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/example-example.Tpo $(DEPDIR)/example-example.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='example.cpp' object='example-example.obj' libtool=no @AMDEPBACKSLASH@
+interval-interval.obj: interval.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(interval_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT interval-interval.obj -MD -MP -MF $(DEPDIR)/interval-interval.Tpo -c -o interval-interval.obj `if test -f 'interval.cpp'; then $(CYGPATH_W) 'interval.cpp'; else $(CYGPATH_W) '$(srcdir)/interval.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/interval-interval.Tpo $(DEPDIR)/interval-interval.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='interval.cpp' object='interval-interval.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(example_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o example-example.obj `if test -f 'example.cpp'; then $(CYGPATH_W) 'example.cpp'; else $(CYGPATH_W) '$(srcdir)/example.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(interval_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o interval-interval.obj `if test -f 'interval.cpp'; then $(CYGPATH_W) 'interval.cpp'; else $(CYGPATH_W) '$(srcdir)/interval.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo

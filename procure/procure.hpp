@@ -1,8 +1,10 @@
-#ifndef libProcure_H
-#define libProcure_H
+#ifndef PROCURE_HPP_
+#define PROCURE_HPP_
 
-#include "stdio.h"
+#include <procure/kernel/common.hpp>
+#include <procure/kernel/interval.hpp>
+#include <procure/kernel/exception.hpp>
+#include <procure/model/var.hpp>
+#include <procure/model/expr.hpp>
 
-extern void print_hello ();
-
-#endif
+#endif // PROCURE_HPP_

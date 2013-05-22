@@ -8,24 +8,53 @@
 #ifndef PROCURE_EXPR_HPP_
 #define PROCURE_EXPR_HPP_
 
+#include <procure/model/var.hpp>
+
 namespace Procure {
 
-template<class Eval>
-struct IExpr
+struct Expr;
+
+namespace Detail {
+
+struct IExprImpl
 {
-	virtual	Eval toLiteral() const = 0;
-	virtual CP::DomExpr<Eval> toCPDomExpr(CP::Store& store) const = 0;
-	virtual CP::BndExpr<Eval> toCPBndExpr(CP::Store& store) const = 0;
-	virtual CP::ValExpr<Eval> toCPValExpr(CP::Store& store) const = 0;
-	virtual Ref<Eval>	toRef(State& state) const = 0;
-	virtual Expr<Eval>	bindRefs(State& state) const = 0;
-	virtual Ref<CP::Var<Eval> >	toCPVarRef(State& state) const = 0;
-	virtual State* getPState() const = 0;
-	virtual std::ostream& print(std::ostream& os) const = 0;
-	virtual std::string getTypeStr() const = 0;
-	virtual ~IExpr() {}
+	virtual ~IExprImpl() {}
+	virtual void print(std::ostream& os) const = 0;
+	virtual Interval operator()() const = 0;
+	virtual Expr d(const Var&) const = 0;
 };
 
-} // PROCURE
+} // Detail
+
+
+struct Expr: Util::SPImplIdiom<Detail::IExprImpl>
+{
+	typedef Util::SPImplIdiom<Detail::IExprImpl> Super;
+
+	Expr(const Expr& expr) : Super(expr)
+	{}
+
+	Expr(Detail::IExprImpl* t) : Super(t)
+	{}
+
+	Expr(const Var& var);
+
+	Expr(const Interval& i);
+
+	Expr(const Real& i);
+
+	void print(std::ostream& os) const;
+	Interval operator()() const;
+	Expr d(const Var&) const;
+};
+
+Expr operator+(const Expr&, const Expr&);
+Expr operator-(const Expr&, const Expr&);
+Expr operator*(const Expr&, const Expr&);
+Expr operator/(const Expr&, const Expr&);
+
+std::ostream& operator<<(std::ostream&, const Expr&);
+
+} // Procure
 
 #endif /* PROCURE_EXPR_HPP_ */

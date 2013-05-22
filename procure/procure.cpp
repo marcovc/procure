@@ -1,6 +1,14 @@
+/*
+ * procure.cpp
+ *
+ *  Created on: May 16, 2013
+ *      Author: marco
+ */
+
 #include "procure.hpp"
 
-void
-print_hello(){
-  printf("$(message)\n");
-}
+namespace Procure {
+
+int dummy = 1;
+
+} // Procure

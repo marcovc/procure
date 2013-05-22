@@ -6,8 +6,8 @@
  */
 
 
-#ifndef PROCURE_UTIL_PIMPL_H_
-#define PROCURE_UTIL_PIMPL_H_
+#ifndef PROCURE_UTIL_PIMPL_HPP_
+#define PROCURE_UTIL_PIMPL_HPP_
 
 #include <memory>
 #include <assert.h>
@@ -62,4 +62,4 @@ struct SPImplIdiom
 }
 }
 
-#endif /* PROCURE_UTIL_PIMPL_H_ */
+#endif /* PROCURE_UTIL_PIMPL_HPP_ */

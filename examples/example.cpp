@@ -13,14 +13,18 @@
  ============================================================================
  */
 
-#include "procure.hpp"
+#include <procure/procure.hpp>
 
-#include <realpaver/Realpaver.h>
 #include <iostream>
+
+using namespace Procure;
 
 int main(void)
 {
-	Realpaver::Variable* pv1 = new Realpaver::RealVariable("v1");
-	Realpaver::Expression e(pv1);
-	std::cout << e+2 << std::endl;
+	Var x1(2.0,5.6,"x1");
+	Var x2(-4.3,1,"x2");
+	std::cout << x1+x2 << std::endl;
+	std::cout << (x1+x2)() << std::endl;
+	std::cout << (x1*x2).d(x2) << std::endl;
+	std::cout << (x1*x2).d(x2)() << std::endl;
 }

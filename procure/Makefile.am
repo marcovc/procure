@@ -6,18 +6,22 @@ lib_LTLIBRARIES = libprocure.la
 
 # These files will end up in the install include directory
 # For example, /usr/include
-include_HEADERS = procure.hpp
+include_HEADERS = procure.hpp kernel/common.hpp kernel/interval.hpp \
+									kernel/interval/interval_gaol.hpp \
+									kernel/interval/interval_boost.hpp \
+									model/var.hpp model/expr.hpp
 
 #######################################
 # Build information for each library
 
 # Sources for libProcure
-libprocure_la_SOURCES = procure.cpp
+libprocure_la_SOURCES = procure.cpp kernel/interval.cpp model/var.cpp \
+												model/expr.cpp
 
 # Linker options libTestProgram
-libprocure_la_LDFLAGS = 
+libprocure_la_LDFLAGS = $(CXX11_LDFLAGS)
 
 # Compiler options. Here we are adding the include directory
 # to be searched for headers included in the source code.
-libprocure_la_CPPFLAGS = -I$(top_srcdir)/procure
+libprocure_la_CPPFLAGS = -I$(top_srcdir)  $(CXX11_CPPFLAGS)
 
