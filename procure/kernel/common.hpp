@@ -10,15 +10,26 @@
 
 #include <procure/config.h>
 
+/*
 #if HAVE_GAOL
 #define PROCURE_INTERVAL_USES_GAOL
 #elif HAVE_BOOST
 #define PROCURE_INTERVAL_USES_BOOST
 #endif
+*/
 
 namespace Procure {
 
 typedef double Real;
+
+namespace Detail  {
+
+struct StaticInitializer  
+{
+	StaticInitializer();
+};
+
+} // Detail
 
 } // Procure
 

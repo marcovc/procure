@@ -10,11 +10,21 @@
 #include <procure/kernel/rounding.hpp>
 
 #include <Interval.h>
+#include <BIAS/BiasF.h>
+#include <Functions.h>
 
 namespace Procure {
 namespace Detail {
 
 typedef INTERVAL ProfilInterval;
+
+template<>
+inline
+void IntervalWrapper<ProfilInterval>::initLib()
+{
+	BiasInit();
+	BiasFuncInit();
+}
 
 template<>
 inline
@@ -26,8 +36,7 @@ IntervalWrapper<ProfilInterval>::IntervalWrapper(const ProfilInterval& aimpl) :
 template<>
 inline
 IntervalWrapper<ProfilInterval>::IntervalWrapper() :
-	impl(-std::numeric_limits<Real>::infinity(),
-	     std::numeric_limits<Real>::infinity())
+	impl(BiasNegInf,BiasPosInf)
 {
 }
 
@@ -92,7 +101,28 @@ template<>
 inline
 Real IntervalWrapper<ProfilInterval>::getMag() const
 {
-	return impl.mag();
+	return Abs(impl);
+}
+
+template<>
+inline
+bool IntervalWrapper<ProfilInterval>::isEmpty() const
+{
+	return false;	// Profil does not support empty intervals
+}
+
+template<>
+inline
+bool IntervalWrapper<ProfilInterval>::contains(const IntervalWrapper& i) const
+{
+	return i.impl <= impl;
+}
+
+template<>
+inline
+bool IntervalWrapper<ProfilInterval>::contains(const Real& r) const
+{
+	return r <= impl;
 }
 
 template<>
@@ -116,6 +146,20 @@ inline
 Real IntervalWrapper<ProfilInterval>::getMedian() const
 {
 	return Mid(impl);
+}
+
+template<>
+inline
+bool IntervalWrapper<ProfilInterval>::isSymmetric() const
+{
+	return -getLb() == getUb();
+}
+
+template<>
+inline
+IntervalWrapper<ProfilInterval> IntervalWrapper<ProfilInterval>::empty()
+{
+	throw Procure::Exception::Unsupported("Profil empty interval");
 }
 
 template<>
@@ -144,14 +188,6 @@ IntervalWrapper<ProfilInterval> IntervalWrapper<ProfilInterval>::getMedianInterv
 
 template<>
 inline
-bool IntervalWrapper<ProfilInterval>::isEmpty() const
-{
-	throw Procure::Exception::Unsupported(
-				"Profil empty interval");
-}
-
-template<>
-inline
 bool IntervalWrapper<ProfilInterval>::isSingleton() const
 {
 	return getLb()==getUb();
@@ -161,10 +197,10 @@ template<>
 inline
 bool IntervalWrapper<ProfilInterval>::isFinite() const
 {
-	return getLb()!=-std::limits<Real>::infinity() and
-			getUb()!=std::limits<Real>::infinity() and
-			getLb()!=std::limits<Real>::infinity() and
-			getUb()!=-std::limits<Real>::infinity();
+	return getLb()!=-std::numeric_limits<Real>::infinity() and
+			getUb()!=std::numeric_limits<Real>::infinity() and
+			getLb()!=std::numeric_limits<Real>::infinity() and
+			getUb()!=-std::numeric_limits<Real>::infinity();
 }
 
 template<>
@@ -172,27 +208,6 @@ inline
 bool IntervalWrapper<ProfilInterval>::isCanonical() const
 {
 	return Pred(impl)==impl;	// FIXME: not sure this is correct
-}
-
-template<>
-inline
-bool IntervalWrapper<ProfilInterval>::isSymmetric() const
-{
-	return -getLb() == getUb();
-}
-
-template<>
-inline
-bool IntervalWrapper<ProfilInterval>::contains(const IntervalWrapper& i) const
-{
-	return i.impl <= impl;
-}
-
-template<>
-inline
-bool IntervalWrapper<ProfilInterval>::contains(const Real& r) const
-{
-	return r <= impl;
 }
 
 template<>
@@ -262,7 +277,7 @@ IntervalWrapper<ProfilInterval>& IntervalWrapper<ProfilInterval>::operator&=(
 {
 	INTERVAL res;
 	if (not Intersection(res,impl,i.impl))
-		impl = empty();
+		impl = empty().impl;
 	else
 		impl = res;
 	return *this;
@@ -281,7 +296,7 @@ template<>
 inline
 const IntervalWrapper<ProfilInterval>& IntervalWrapper<ProfilInterval>::operator+() const
 {
-	return +impl;
+	return *this;
 }
 
 template<>
@@ -296,13 +311,6 @@ inline
 IntervalWrapper<ProfilInterval> IntervalWrapper<ProfilInterval>::inverse() const
 {
 	return 1.0/impl;
-}
-
-template<>
-inline
-IntervalWrapper<ProfilInterval> IntervalWrapper<ProfilInterval>::empty()
-{
-	throw Procure::Exception::Unsupported("Profil empty interval");
 }
 
 template<>
@@ -392,34 +400,39 @@ OP_DEF_2_R	(Detail::IntervalWrapper<Detail::ProfilInterval>,/)
 
 /// @}
 
+#define FUN_DEF_1(Op,BiasFunc)\
+	inline\
+	Detail::IntervalWrapper<Detail::ProfilInterval> Op(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)\
+	{\
+		return BiasFunc(i.getImpl());	\
+	}
+
 /// Algebraic operators involving intervals.
 /// @{
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> abs(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("abs");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> sqrt(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("sqrt");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> sqr(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("sqr");	}
+FUN_DEF_1(abs,IAbs)
+FUN_DEF_1(sqrt,Sqrt)
+FUN_DEF_1(sqr,Sqr)
 
 inline
 Detail::IntervalWrapper<Detail::ProfilInterval> pow(const Detail::IntervalWrapper<Detail::ProfilInterval>& i, int y)
-{	throw Procure::Exception::Unsupported("pow");	}
+{	
+	return Power(i.getImpl(),y);
+}
 
 inline
 Detail::IntervalWrapper<Detail::ProfilInterval> pow(const Detail::IntervalWrapper<Detail::ProfilInterval>& i1,
                                   const Detail::IntervalWrapper<Detail::ProfilInterval>& i2)
-{	throw Procure::Exception::Unsupported("pow");	}
+{	
+	return Power(i1.getImpl(),i2.getImpl());
+}
 
 inline
 Detail::IntervalWrapper<Detail::ProfilInterval> nth_root(const Detail::IntervalWrapper<Detail::ProfilInterval>& i,
                                        unsigned int y)
-{	throw Procure::Exception::Unsupported("nth_root");	}
+{	
+	return Root(i.getImpl(),y);
+}
 
 
 /// @}
@@ -427,14 +440,8 @@ Detail::IntervalWrapper<Detail::ProfilInterval> nth_root(const Detail::IntervalW
 /// Transcendental operators involving intervals.
 /// @{
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> exp(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("exp");	}
-
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> log(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("log");	}
+FUN_DEF_1(exp,Exp)
+FUN_DEF_1(log,Log)
 
 
 /// @}
@@ -449,53 +456,21 @@ OP_UNDEF_2_R(Detail::IntervalWrapper<Detail::ProfilInterval>,%)
 /// Trignometric functions involving intervals.
 /// @{
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> sin(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("sin");	}
+FUN_DEF_1(sin,Sin)
+FUN_DEF_1(cos,Cos)
+FUN_DEF_1(tan,Tan)
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> cos(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("cos");	}
+FUN_DEF_1(asin,ArcSin)
+FUN_DEF_1(acos,ArcCos)
+FUN_DEF_1(atan,ArcTan)
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> tan(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("tan");	}
+FUN_DEF_1(sinh,Sinh)
+FUN_DEF_1(cosh,Cosh)
+FUN_DEF_1(tanh,Tanh)
 
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> asin(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("asin");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> acos(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("acos");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> atan(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("atan");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> sinh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("sinh");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> cosh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("cosh");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> tanh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("tanh");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> asinh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("asinh");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> acosh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("acosh");	}
-
-inline
-Detail::IntervalWrapper<Detail::ProfilInterval> atanh(const Detail::IntervalWrapper<Detail::ProfilInterval>& i)
-{	throw Procure::Exception::Unsupported("atanh");	}
+FUN_DEF_1(asinh,ArSinh)
+FUN_DEF_1(acosh,ArCosh)
+FUN_DEF_1(atanh,ArTanh)
 
 /// @}
 

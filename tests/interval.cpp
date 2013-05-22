@@ -269,7 +269,7 @@ const std::vector<Interval>
 Collect<std::function<Real(Real)>>::dom =
 {
 	Interval(-inf,inf),	//abs
-	Interval(0,inf),			//sqrt
+	Interval(0.0,inf),			//sqrt
 	Interval(-inf,inf),	//sqr
 	Interval(-inf,inf),	//exp
 	Interval(std::numeric_limits<Real>::epsilon(),inf),	//log
@@ -284,7 +284,8 @@ Collect<std::function<Real(Real)>>::dom =
 	Interval(-inf,inf),	//tanh
 	Interval(-inf,inf),	//asinh
 	Interval(1.0,inf),		//acosh
-	Interval(-1.0,1.0),	//atanh
+	Interval(-1.0+std::numeric_limits<Real>::epsilon(),
+			1.0-std::numeric_limits<Real>::epsilon()),	//atanh
 };
 
 const std::vector<std::string>
@@ -350,12 +351,14 @@ Collect<std::function<T1(const T2&, const T3&)>>::fn =
 	static_cast<funtype>(Procure::max)
 };
 
-Interval toFn1Dom(unsigned int f, const Interval& i)
+bool toFn1Dom(unsigned int f, const Interval& i, Interval& res)
 {
-	Interval r = i;
+	res = i;
 	typedef	Collect<std::function<Real(Real)> > FnR;
-	r &= FnR::dom[f];
-	return r;
+	if (res.isDisjoint(FnR::dom[f]))
+		return false;
+	res &= FnR::dom[f];
+	return true;
 }
 
 Collect<std::function<Real(Real)> > fr;
@@ -368,12 +371,13 @@ Collect<std::function<Interval(const Interval&,const Interval&)> > fii;
 void testCorrectness(const std::vector<Interval>& in,
                     const unsigned int nbSamples = 10)
 {
+	Interval aux;
 	for (unsigned int f = 0; f < fi.size(); ++f)
 	{
 		try {
 			for (unsigned int i = 0; i < in.size(); ++i)
-				if (not toFn1Dom(f,in[i]).isEmpty() and
-						not isCorrect(fi[f],fr[f],toFn1Dom(f,in[i]),nbSamples))
+				if (toFn1Dom(f,in[i],aux) and
+					not isCorrect(fi[f],fr[f],aux,nbSamples))
 				{
 					std::cout << "with fn = " << fr.name[f] << std::endl;
 					std::cout << "----\n";
@@ -400,7 +404,6 @@ void testCorrectness(const std::vector<Interval>& in,
 			std::cout << "warning: " << e.what() << std::endl;
 		}
 	}
-
 	using namespace std::placeholders;
 
 	for (unsigned int f = 0; f < fir.size(); ++f)
@@ -443,12 +446,13 @@ void testCorrectness(const std::vector<Interval>& in,
 void testMonotonicity(const std::vector<Interval>& in,
                      const unsigned int nbSplits = 10)
 {
+	Interval aux;
 	for (unsigned int f = 0; f < fi.size(); ++f)
 	{
 		try {
 			for (unsigned int i = 0; i < in.size(); ++i)
-				if (not toFn1Dom(f,in[i]).isEmpty() and
-						not isMonotonic(fi[f],in[i],nbSplits))
+				if (toFn1Dom(f,in[i],aux) and
+					not isMonotonic(fi[f],aux,nbSplits))
 				{
 					std::cout << "with fn = " << fr.name[f] << std::endl;
 					std::cout << "----\n";
@@ -552,14 +556,17 @@ int compare(const std::vector<Interval>& in)
 		++count;
 	};
 
+	Interval aux;
+	Interval2 aux2;
 	for (unsigned int f = 0; f < fi.size(); ++f)
 	{
 		try {
 			for (unsigned int i = 0; i < in.size(); ++i)
-				if (not toFn1Dom(f,in[i]).isEmpty())
+				if (toFn1Dom(f,in[i],aux))
 				{
-					Interval out = fi[f](in[i]);
-					Interval2 out2 = fi2[f](in2[i]);
+					toFn1Dom(f,in2[i],aux2);
+					Interval out = fi[f](aux);
+					Interval2 out2 = fi2[f](aux2);
 					accum(out,out2,f);
 				}
 		} catch (const Procure::Exception::Unsupported& e)
@@ -627,15 +634,15 @@ void time(const std::vector<Interval>& in, unsigned int nbSamples)
 {
 	std::clock_t c_start = std::clock();
 	unsigned int count = 0;
-
+	Interval aux;
 	for (unsigned int f = 0; f < fi.size(); ++f)
 	{
 		try {
 			for (unsigned int i = 0; i < in.size(); ++i)
-				if (not toFn1Dom(f,in[i]).isEmpty())
+				if (toFn1Dom(f,in[i],aux))
 				{
 					for (unsigned int s = 0; s < nbSamples; ++s)
-						fi[f](in[i]);
+						fi[f](aux);
 					count += 1;
 				}
 		} catch (const Procure::Exception::Unsupported& e)
@@ -702,7 +709,7 @@ int main(int argc, char** argv)
 	try {
 		testCorrectness(in,10);
 		testMonotonicity(in,10);
-		compare<Detail::GaolInterval>(in);
+		//compare<Detail::GaolInterval>(in);
 		time(in,100);
 	}
 	catch (const std::exception& e)

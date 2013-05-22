@@ -6,7 +6,7 @@ AC_PROG_CXX
 
 AC_CANONICAL_SYSTEM
 
-dnl AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_MACRO_DIR([m4])
 
 dnl Initialize automake
 AM_INIT_AUTOMAKE
@@ -167,7 +167,7 @@ fi
 
 
 dnl Check for Profil
-PROFIL_LIBS="-lProfil"
+PROFIL_LIBS="-lProfil -lBias"
 LIBS=$LIBS" "$PROFIL_LIBS
 AC_MSG_CHECKING([for Profil library])
 AC_RUN_IFELSE( [
@@ -180,7 +180,7 @@ AC_MSG_RESULT(${have_profil})
 LIBS=$OLD_LIBS
 
 if test ${have_profil} = "yes"; then
-   AC_SUBST([PROFIL_LIBS],$LIBS)
+   AC_SUBST([PROFIL_LIBS],$PROFIL_LIBS)
    AC_DEFINE(HAVE_PROFIL,1,
           [Define to 1 if Profil is detected.])
 else

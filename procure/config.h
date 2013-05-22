@@ -2,16 +2,16 @@
 /* procure/config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 if boost interval library is detected. */
-#define HAVE_BOOSTINTERVAL 1
+/* #undef HAVE_BOOSTINTERVAL */
 
 /* Define to 1 if crlibm library is detected. */
-#define HAVE_CRLIBM 1
+/* #undef HAVE_CRLIBM */
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
-#define HAVE_DLFCN_H 1
+/* #undef HAVE_DLFCN_H */
 
 /* Define to 1 if Gaol is detected. */
-#define HAVE_GAOL 1
+/* #undef HAVE_GAOL */
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -20,13 +20,13 @@
 #define HAVE_MEMORY_H 1
 
 /* Define to 1 if mpfr library is detected. */
-#define HAVE_MPFR 1
+/* #undef HAVE_MPFR */
 
 /* Define to 1 if Profil is detected. */
-/* #undef HAVE_PROFIL */
+#define HAVE_PROFIL 1
 
 /* Define to 1 if Realpaver is detected. */
-#define HAVE_REALPAVER 1
+/* #undef HAVE_REALPAVER */
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
@@ -78,13 +78,13 @@
 #define PACKAGE_VERSION "1.0"
 
 /* Define to 1 if boost is selected to implement interval arithmetic. */
-#define PROCURE_INTERVAL_USE_BOOST 1
+/* #undef PROCURE_INTERVAL_USE_BOOST */
 
 /* Define to 1 if gaol is selected to implement interval arithmetic. */
 /* #undef PROCURE_INTERVAL_USE_GAOL */
 
 /* Define to 1 if profil is selected to implement interval arithmetic. */
-/* #undef PROCURE_INTERVAL_USE_PROFIL */
+#define PROCURE_INTERVAL_USE_PROFIL 1
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1

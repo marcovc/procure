@@ -8,7 +8,14 @@
 #include "procure.hpp"
 
 namespace Procure {
+namespace Detail {
 
-int dummy = 1;
+StaticInitializer::StaticInitializer() 
+{
+	Interval::initLib();
+}
 
+static StaticInitializer _initLib = StaticInitializer();
+
+} // Detail
 } // Procure

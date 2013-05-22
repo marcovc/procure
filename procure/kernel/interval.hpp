@@ -1,5 +1,5 @@
 /*
- * var.hpp
+ * interval.hpp
  *
  *  Created on: May 15, 2013
  *      Author: marco
@@ -15,6 +15,8 @@
 #include <iostream>
 #include <sstream>
 #include <assert.h>
+#include <limits>
+#include <iterator>
 
 namespace Procure {
 namespace Detail {
@@ -164,6 +166,11 @@ struct IntervalWrapper
 	const Impl& getImpl() const;
 
 	private:
+	friend struct Detail::StaticInitializer;
+
+	/// Used to initialize wrapped library
+	static void initLib();
+
 	Impl impl;
 	static OutputFormat outputFormat;
 	static unsigned int outputPrecision;
