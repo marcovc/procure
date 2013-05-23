@@ -165,6 +165,12 @@ typedef boost::numeric::interval<Real,
 
 template<>
 inline
+void IntervalWrapper<BoostInterval>::initLib()
+{
+}
+
+template<>
+inline
 IntervalWrapper<BoostInterval>::IntervalWrapper(const BoostInterval& aimpl) :
 	impl(aimpl)
 {

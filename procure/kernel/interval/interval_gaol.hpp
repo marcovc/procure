@@ -15,6 +15,12 @@ typedef gaol::interval GaolInterval;
 
 template<>
 inline
+void IntervalWrapper<GaolInterval>::initLib()
+{
+}
+
+template<>
+inline
 IntervalWrapper<GaolInterval>::IntervalWrapper(const GaolInterval& aimpl) :
 		impl(aimpl)
 {

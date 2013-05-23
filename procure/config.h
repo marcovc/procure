@@ -2,16 +2,16 @@
 /* procure/config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Define to 1 if boost interval library is detected. */
-/* #undef HAVE_BOOSTINTERVAL */
+#define HAVE_BOOSTINTERVAL 1
 
 /* Define to 1 if crlibm library is detected. */
-/* #undef HAVE_CRLIBM */
+#define HAVE_CRLIBM 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
-/* #undef HAVE_DLFCN_H */
+#define HAVE_DLFCN_H 1
 
 /* Define to 1 if Gaol is detected. */
-/* #undef HAVE_GAOL */
+#define HAVE_GAOL 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -20,10 +20,10 @@
 #define HAVE_MEMORY_H 1
 
 /* Define to 1 if mpfr library is detected. */
-/* #undef HAVE_MPFR */
+#define HAVE_MPFR 1
 
 /* Define to 1 if Profil is detected. */
-#define HAVE_PROFIL 1
+/* #undef HAVE_PROFIL */
 
 /* Define to 1 if Realpaver is detected. */
 /* #undef HAVE_REALPAVER */
@@ -78,13 +78,13 @@
 #define PACKAGE_VERSION "1.0"
 
 /* Define to 1 if boost is selected to implement interval arithmetic. */
-/* #undef PROCURE_INTERVAL_USE_BOOST */
+#define PROCURE_INTERVAL_USE_BOOST 1
 
 /* Define to 1 if gaol is selected to implement interval arithmetic. */
 /* #undef PROCURE_INTERVAL_USE_GAOL */
 
 /* Define to 1 if profil is selected to implement interval arithmetic. */
-#define PROCURE_INTERVAL_USE_PROFIL 1
+/* #undef PROCURE_INTERVAL_USE_PROFIL */
 
 /* Define to 1 if you have the ANSI C header files. */
 #define STDC_HEADERS 1
