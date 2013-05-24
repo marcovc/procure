@@ -48,6 +48,15 @@
 /* Define to 1 if you have the <unistd.h> header file. */
 #undef HAVE_UNISTD_H
 
+/* Define to 1 if boost is selected to implement interval arithmetic. */
+#undef INTERVAL_USE_BOOST
+
+/* Define to 1 if gaol is selected to implement interval arithmetic. */
+#undef INTERVAL_USE_GAOL
+
+/* Define to 1 if profil is selected to implement interval arithmetic. */
+#undef INTERVAL_USE_PROFIL
+
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
 #undef LT_OBJDIR
@@ -75,15 +84,6 @@
 
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
-
-/* Define to 1 if boost is selected to implement interval arithmetic. */
-#undef PROCURE_INTERVAL_USE_BOOST
-
-/* Define to 1 if gaol is selected to implement interval arithmetic. */
-#undef PROCURE_INTERVAL_USE_GAOL
-
-/* Define to 1 if profil is selected to implement interval arithmetic. */
-#undef PROCURE_INTERVAL_USE_PROFIL
 
 /* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS

@@ -26,6 +26,13 @@ AC_ARG_WITH([interval_lib],
     [Specify the interval arithmetic library to use @<:@default=any@:>@])],
     use_interval_lib="${with_interval_lib}",use_interval_lib="any")
 
+dnl Set some environment defaults
+top_dir=`cd $srcdir && pwd`
+CPPFLAGS=$CPPFLAGS" -I${top_dir}/3rdparty/include -I${top_dir}/3rdparty/include/profil"
+LDFLAGS=$LDFLAGS" -L${top_dir}/3rdparty/lib"
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH" ${top_dir}/3rdparty/lib"
+DYLD_LIBRARY_PATH=$LD_LIBRARY_PATH" ${top_dir}/3rdparty/lib"
+
 dnl Check for 3rd party libraries
 OLD_LIBS=$LIBS
 OLD_CXXFLAGS=$CXXFLAGS
@@ -171,8 +178,9 @@ PROFIL_LIBS="-lProfil -lBias"
 LIBS=$LIBS" "$PROFIL_LIBS
 AC_MSG_CHECKING([for Profil library])
 AC_RUN_IFELSE( [
-                  AC_LANG_PROGRAM( [ #include <Interval.h> ],
-                                   [ INTERVAL a;  ] )
+                  AC_LANG_PROGRAM( [ #include <Interval.h>
+                  										#include <Functions.h> ],
+                                   [ INTERVAL a(-1.0,1.0);  ] )
                ],
                [have_profil=yes],
                [have_profil=no])
@@ -205,15 +213,15 @@ if test "${use_interval_lib}" = "any"; then
 fi
 	
 if test "${use_interval_lib}" = "gaol"; then
-  AC_DEFINE(PROCURE_INTERVAL_USE_GAOL,1,
+  AC_DEFINE(INTERVAL_USE_GAOL,1,
           [Define to 1 if gaol is selected to implement interval arithmetic.])
   AC_SUBST([INTERVAL_LIBS],$GAOL_LIBS)
 elif test "${use_interval_lib}" = "boost"; then
-  AC_DEFINE(PROCURE_INTERVAL_USE_BOOST,1,
+  AC_DEFINE(INTERVAL_USE_BOOST,1,
           [Define to 1 if boost is selected to implement interval arithmetic.])
   AC_SUBST([INTERVAL_LIBS],$BOOSTINTERVAL_LIBS)
 elif test "${use_interval_lib}" = "profil"; then
-  AC_DEFINE(PROCURE_INTERVAL_USE_PROFIL,1,
+  AC_DEFINE(INTERVAL_USE_PROFIL,1,
           [Define to 1 if profil is selected to implement interval arithmetic.])
   AC_SUBST([INTERVAL_LIBS],$PROFIL_LIBS)
 fi
@@ -233,6 +241,9 @@ AC_SUBST(CXX11_CPPFLAGS)
 AC_SUBST(CXX11_LDFLAGS)
 
 AC_CONFIG_HEADERS(procure/config.h)
+
+dnl Prefixes all definitions with PROCURE_ to avoid macro name clashes
+AX_PREFIX_CONFIG_H(procure/procure-config.hpp)
 
 AC_CONFIG_FILES(Makefile
                 procure/Makefile

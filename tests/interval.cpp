@@ -215,7 +215,7 @@ struct Collect<std::function<Real(Real)>>
 	std::function<Real(Real)> operator[](unsigned int i)
 	{	return fn[i];	}
 	static unsigned int size() {	return fn.size();	}
-	static const std::vector<Interval> dom;
+	static const std::vector<std::pair<Real,Real> > dom;
 	static const std::vector<std::string> name;
 };
 
@@ -265,27 +265,27 @@ Collect<std::function<Real(Real)>>::fn =
 	 ::tanh,::asinh,::acosh,::atanh
 };
 
-const std::vector<Interval>
+const std::vector<std::pair<Real,Real> >
 Collect<std::function<Real(Real)>>::dom =
 {
-	Interval(-inf,inf),	//abs
-	Interval(0.0,inf),			//sqrt
-	Interval(-inf,inf),	//sqr
-	Interval(-inf,inf),	//exp
-	Interval(std::numeric_limits<Real>::epsilon(),inf),	//log
-	Interval(-maxd,maxd),	//sin
-	Interval(-maxd,maxd),	//cos
-	Interval(-maxd,maxd),	//tan
-	Interval(-1.0,1.0),	//asin
-	Interval(-1.0,1.0),	//acos
-	Interval(-inf,inf),	//atan
-	Interval(-inf,inf),	//sinh
-	Interval(-inf,inf),	//cosh
-	Interval(-inf,inf),	//tanh
-	Interval(-inf,inf),	//asinh
-	Interval(1.0,inf),		//acosh
-	Interval(-1.0+std::numeric_limits<Real>::epsilon(),
-			1.0-std::numeric_limits<Real>::epsilon()),	//atanh
+	{-inf,inf},	//abs
+	{0.0,inf},			//sqrt
+	{-inf,inf},	//sqr
+	{-inf,inf},	//exp
+	{std::numeric_limits<Real>::min(),inf},	//log
+	{-maxd,maxd},	//sin
+	{-maxd,maxd},	//cos
+	{-maxd,maxd},	//tan
+	{-1.0,1.0},	//asin
+	{-1.0,1.0},	//acos
+	{-inf,inf},	//atan
+	{-inf,inf},	//sinh
+	{-inf,inf},	//cosh
+	{-inf,inf},	//tanh
+	{-inf,inf},	//asinh
+	{1.0,inf},		//acosh
+	{-1.0+std::numeric_limits<Real>::min(),
+			1.0-std::numeric_limits<Real>::min()}	//atanh
 };
 
 const std::vector<std::string>
@@ -351,13 +351,17 @@ Collect<std::function<T1(const T2&, const T3&)>>::fn =
 	static_cast<funtype>(Procure::max)
 };
 
-bool toFn1Dom(unsigned int f, const Interval& i, Interval& res)
+template<class Impl>
+bool toFn1Dom(unsigned int f,
+              const Detail::IntervalWrapper<Impl>& i,
+              Detail::IntervalWrapper<Impl>& res)
 {
 	res = i;
 	typedef	Collect<std::function<Real(Real)> > FnR;
-	if (res.isDisjoint(FnR::dom[f]))
+	Detail::IntervalWrapper<Impl> dom(FnR::dom[f].first,FnR::dom[f].second);
+	if (res.isDisjoint(dom))
 		return false;
-	res &= FnR::dom[f];
+	res &= dom;
 	return true;
 }
 
@@ -701,6 +705,16 @@ void time(const std::vector<Interval>& in, unsigned int nbSamples)
 
 int main(int argc, char** argv)
 {
+	std::cout << "testing Interval class (based on ";
+#if PROCURE_INTERVAL_USE_GAOL
+	std::cout << "GAOL";
+#elif	PROCURE_INTERVAL_USE_BOOST
+	std::cout << "BOOST";
+#elif	PROCURE_INTERVAL_USE_PROFIL
+	std::cout << "PROFIL";
+#endif
+	std::cout << " interval library)...\n";
+
 	Interval::setOutputFormat(Interval::OutputFormat::bounds);
 	Interval::setOutputPrecision(17);
 
@@ -709,7 +723,36 @@ int main(int argc, char** argv)
 	try {
 		testCorrectness(in,10);
 		testMonotonicity(in,10);
-		//compare<Detail::GaolInterval>(in);
+
+		#if PROCURE_INTERVAL_USE_GAOL
+			#if PROCURE_HAVE_BOOST
+				std::cout << "comparing with BOOST:\n";
+				compare<Detail::BoostInterval>(in);
+			#endif
+			#if PROCURE_HAVE_PROFIL
+				std::cout << "comparing with PROFIL:\n";
+				compare<Detail::ProfilInterval>(in);
+			#endif
+		#elif	PROCURE_INTERVAL_USE_BOOST
+			#if PROCURE_HAVE_GAOL
+				std::cout << "comparing with GAOL:\n";
+				compare<Detail::GaolInterval>(in);
+			#endif
+			#if PROCURE_HAVE_PROFIL
+				std::cout << "comparing with PROFIL:\n";
+				compare<Detail::ProfilInterval>(in);
+			#endif
+		#elif	PROCURE_INTERVAL_USE_PROFIL
+			#if PROCURE_HAVE_GAOL
+				std::cout << "comparing with GAOL:\n";
+				compare<Detail::GaolInterval>(in);
+			#endif
+			#if PROCURE_HAVE_BOOST
+				std::cout << "comparing with BOOST:\n";
+				compare<Detail::BoostInterval>(in);
+			#endif
+		#endif
+
 		time(in,100);
 	}
 	catch (const std::exception& e)

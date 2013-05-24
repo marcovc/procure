@@ -299,15 +299,15 @@ std::ostream& operator<<(std::ostream& os, const IntervalWrapper<Impl>& i)
 } // Detail
 } // Procure
 
-#if HAVE_GAOL
+#if PROCURE_HAVE_GAOL
 #include <procure/kernel/interval/interval_gaol.hpp>
 #endif
 
-#if HAVE_BOOSTINTERVAL
+#if PROCURE_HAVE_BOOSTINTERVAL
 #include <procure/kernel/interval/interval_boost.hpp>
 #endif
 
-#if HAVE_PROFIL
+#if PROCURE_HAVE_PROFIL
 #include <procure/kernel/interval/interval_profil.hpp>
 #endif
 

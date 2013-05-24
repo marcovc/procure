@@ -10,7 +10,6 @@
 #include <procure/kernel/rounding.hpp>
 
 #include <Interval.h>
-#include <BIAS/BiasF.h>
 #include <Functions.h>
 
 namespace Procure {
@@ -23,7 +22,7 @@ inline
 void IntervalWrapper<ProfilInterval>::initLib()
 {
 	BiasInit();
-	BiasFuncInit();
+//	BiasFuncInit();
 }
 
 template<>

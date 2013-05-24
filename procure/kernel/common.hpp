@@ -8,7 +8,7 @@
 #ifndef PROCURE_KERNEL_COMMON_HPP_
 #define PROCURE_KERNEL_COMMON_HPP_
 
-#include <procure/config.h>
+#include <procure/procure-config.hpp>
 
 /*
 #if HAVE_GAOL

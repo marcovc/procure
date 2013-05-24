@@ -1,0 +1,25 @@
+diff -Naur boost_1_53_0-orig/boost/numeric/interval/rounded_arith.hpp boost_1_53_0-fixed/boost/numeric/interval/rounded_arith.hpp
+--- boost_1_53_0-orig/boost/numeric/interval/rounded_arith.hpp	2008-10-13 10:00:03.000000000 +0100
++++ boost_1_53_0-fixed/boost/numeric/interval/rounded_arith.hpp	2013-05-24 16:39:30.000000000 +0100
+@@ -68,8 +68,8 @@
+   { BOOST_NUMERIC_INTERVAL_using_math(sqrt); BOOST_DN(sqrt(x)); }
+   T sqrt_up  (const T& x)
+   { BOOST_NUMERIC_INTERVAL_using_math(sqrt); BOOST_UP(sqrt(x)); }
+-  T int_down(const T& x) { this->downward(); return to_int(x); }
+-  T int_up  (const T& x) { this->upward();   return to_int(x); }
++  T int_down(const T& x) { this->downward(); return this->to_int(x); }
++  T int_up  (const T& x) { this->upward();   return this->to_int(x); }
+ # undef BOOST_DN
+ # undef BOOST_NR
+ # undef BOOST_UP
+@@ -105,8 +105,8 @@
+   { BOOST_NUMERIC_INTERVAL_using_math(sqrt); BOOST_DN(sqrt(x)); }
+   T sqrt_up  (const T& x)
+   { BOOST_NUMERIC_INTERVAL_using_math(sqrt); BOOST_UP(sqrt(x)); }
+-  T int_down(const T& x) { return -to_int(-x); }
+-  T int_up  (const T& x) { return to_int(x); }
++  T int_down(const T& x) { return -this->to_int(-x); }
++  T int_up  (const T& x) { return this->to_int(x); }
+ # undef BOOST_DN
+ # undef BOOST_NR
+ # undef BOOST_UP

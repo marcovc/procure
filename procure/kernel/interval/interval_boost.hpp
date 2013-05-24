@@ -12,11 +12,13 @@
 #include <boost/numeric/interval.hpp>
 
 #include <limits>
+
+#include <limits>
 #include <cmath>
 
-#if HAVE_CRLIBM
+#if PROCURE_HAVE_CRLIBM
 #include <crlibm.h>
-#elif HAVE_MPFR
+#elif PROCURE_HAVE_MPFR
 #include <mpfr.h>
 #endif
 
@@ -31,7 +33,7 @@ namespace Detail {
  * 	If neither crlibm nor mpfr are present then it uses an approximation.
  */
 
-#if HAVE_CRLIBM
+#if PROCURE_HAVE_CRLIBM
 
 struct RoundedMath :
 		boost::numeric::interval_lib::rounded_arith_opp<Real>
@@ -87,7 +89,7 @@ struct RoundedMath :
 	#undef UNSUP_FUNC
 };
 
-#elif HAVE_MPFR
+#elif PROCURE_HAVE_MPFR
 
 struct RoundedMath :
 		boost::numeric::interval_lib::rounded_arith_opp<Real>
