@@ -1,0 +1,192 @@
+diff -Naur Profil-2.0.8/config/alpha-Linux-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/alpha-Linux-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/alpha-Linux-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/alpha-Linux-compat-gcc/BiasRnd.h	2013-05-23 15:58:16.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/hppa-HPUX-fast-gcc/BiasRnd.h fixed/Profil-2.0.8/config/hppa-HPUX-fast-gcc/BiasRnd.h
+--- Profil-2.0.8/config/hppa-HPUX-fast-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/hppa-HPUX-fast-gcc/BiasRnd.h	2013-05-23 15:58:32.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/mips-irix-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/mips-irix-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/mips-irix-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/mips-irix-compat-gcc/BiasRnd.h	2013-05-23 15:58:45.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/ppc-MacOSX-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/ppc-MacOSX-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/ppc-MacOSX-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/ppc-MacOSX-compat-gcc/BiasRnd.h	2013-05-23 15:58:58.000000000 +0100
+@@ -44,7 +44,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/rs6000-AIX4.1-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/rs6000-AIX4.1-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/rs6000-AIX4.1-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/rs6000-AIX4.1-compat-gcc/BiasRnd.h	2013-05-23 15:59:15.000000000 +0100
+@@ -44,7 +44,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/rs6000-AIX4.1-compat-xlc/BiasRnd.h fixed/Profil-2.0.8/config/rs6000-AIX4.1-compat-xlc/BiasRnd.h
+--- Profil-2.0.8/config/rs6000-AIX4.1-compat-xlc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/rs6000-AIX4.1-compat-xlc/BiasRnd.h	2013-05-23 15:59:28.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/sparc-Solaris2.x-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/sparc-Solaris2.x-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/sparc-Solaris2.x-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/sparc-Solaris2.x-compat-gcc/BiasRnd.h	2013-05-23 15:59:58.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/sparc-Solaris2.x-fast-gcc/BiasRnd.h fixed/Profil-2.0.8/config/sparc-Solaris2.x-fast-gcc/BiasRnd.h
+--- Profil-2.0.8/config/sparc-Solaris2.x-fast-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/sparc-Solaris2.x-fast-gcc/BiasRnd.h	2013-05-23 16:00:14.000000000 +0100
+@@ -48,7 +48,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/sparc-SunOS4.1-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/sparc-SunOS4.1-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/sparc-SunOS4.1-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/sparc-SunOS4.1-compat-gcc/BiasRnd.h	2013-05-23 16:00:33.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/sparc-SunOS4.1-fast-gcc/BiasRnd.h fixed/Profil-2.0.8/config/sparc-SunOS4.1-fast-gcc/BiasRnd.h
+--- Profil-2.0.8/config/sparc-SunOS4.1-fast-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/sparc-SunOS4.1-fast-gcc/BiasRnd.h	2013-05-23 16:00:46.000000000 +0100
+@@ -48,7 +48,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-64-Linux-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/x86-64-Linux-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/x86-64-Linux-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-64-Linux-compat-gcc/BiasRnd.h	2013-05-23 16:01:09.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-Linux-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/x86-Linux-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/x86-Linux-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-Linux-compat-gcc/BiasRnd.h	2013-05-23 15:58:00.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-Linux-fast-gcc/BiasRnd.h fixed/Profil-2.0.8/config/x86-Linux-fast-gcc/BiasRnd.h
+--- Profil-2.0.8/config/x86-Linux-fast-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-Linux-fast-gcc/BiasRnd.h	2013-05-23 16:01:51.000000000 +0100
+@@ -44,7 +44,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-Win32-compat-gcc/BiasRnd.h fixed/Profil-2.0.8/config/x86-Win32-compat-gcc/BiasRnd.h
+--- Profil-2.0.8/config/x86-Win32-compat-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-Win32-compat-gcc/BiasRnd.h	2013-05-23 16:02:18.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-Win32-compat-watcom/BiasRnd.h fixed/Profil-2.0.8/config/x86-Win32-compat-watcom/BiasRnd.h
+--- Profil-2.0.8/config/x86-Win32-compat-watcom/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-Win32-compat-watcom/BiasRnd.h	2013-05-23 16:02:29.000000000 +0100
+@@ -39,7 +39,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#undef __BIASRAISEDIVIDEBYZERO__
++//#undef __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,
+diff -Naur Profil-2.0.8/config/x86-Win32-fast-gcc/BiasRnd.h fixed/Profil-2.0.8/config/x86-Win32-fast-gcc/BiasRnd.h
+--- Profil-2.0.8/config/x86-Win32-fast-gcc/BiasRnd.h	2009-01-28 10:05:16.000000000 +0000
++++ fixed/Profil-2.0.8/config/x86-Win32-fast-gcc/BiasRnd.h	2013-05-23 16:02:41.000000000 +0100
+@@ -44,7 +44,7 @@
+  * otherwise, bounds containing +/-oo
+  * or NaN are computed.
+  */
+-#define __BIASRAISEDIVIDEBYZERO__
++//#define __BIASRAISEDIVIDEBYZERO__
+ 
+ /*
+  * If the following macro is defined,

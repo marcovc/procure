@@ -5,7 +5,7 @@
 #define HAVE_BOOSTINTERVAL 1
 
 /* Define to 1 if crlibm library is detected. */
-#define HAVE_CRLIBM 1
+/* #undef HAVE_CRLIBM */
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 #define HAVE_DLFCN_H 1
@@ -26,7 +26,7 @@
 /* #undef HAVE_PROFIL */
 
 /* Define to 1 if Realpaver is detected. */
-/* #undef HAVE_REALPAVER */
+#define HAVE_REALPAVER 1
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #define HAVE_STDINT_H 1
