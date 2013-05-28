@@ -129,7 +129,7 @@ install_gaol()
 	tar -xzvf ${top_dir}/packages/${gaol_package} &&
 	cd ${gaol} &&
 	patch -p1 < ${top_dir}/patch/${gaol_patch} &&
-	(${buildenv} ./configure --prefix=${top_dir} --with-mathlib=apmath ||
+	(${buildenv} ./configure --prefix=${top_dir} --with-mathlib=apmathlib ||
 	 ${buildenv} ./configure --prefix=${top_dir} --with-mathlib=crlibm) &&
 	make &&
 	make install &&
