@@ -10,17 +10,13 @@
 
 #include <procure/procure-config.hpp>
 
-/*
-#if HAVE_GAOL
-#define PROCURE_INTERVAL_USES_GAOL
-#elif HAVE_BOOST
-#define PROCURE_INTERVAL_USES_BOOST
-#endif
-*/
+#define PROCURE_UNREACHABLE()\
+throw Procure::Exception::Internal()
 
 namespace Procure {
 
 typedef double Real;
+typedef unsigned int uint;
 
 namespace Detail  {
 

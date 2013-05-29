@@ -1,0 +1,165 @@
+# depslib dependency file v1.0
+1308229367 source:c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\menu.cpp
+	"Menu.h"
+	<iostream>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<Utilities.h>
+	<stdlib.h>
+	<process.h>
+	<ctype.h>
+
+1308229096 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\menu.h
+	<vector>
+	<Interval.h>
+	<IntervalVector.h>
+	<Functions.h>
+	<iostream>
+	<fstream>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\interval.h
+	<BIAS/Bias0.h>
+	<Configuration.h>
+	<iostream>
+
+1308227180 c:\cygwin\home\jorge\profil-ibex\include\bias\bias0.h
+	<BIAS/BiasType.h>
+
+1308227180 c:\cygwin\home\jorge\profil-ibex\include\bias\biastype.h
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\configuration.h
+	<Definitions.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\definitions.h
+	<BIAS/BiasType.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\intervalvector.h
+	<BIAS/Bias1.h>
+	<Configuration.h>
+	<Error.h>
+	<Vector.h>
+	<Interval.h>
+
+1308227180 c:\cygwin\home\jorge\profil-ibex\include\bias\bias1.h
+	<BIAS/Bias0.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\error.h
+	<Configuration.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\vector.h
+	<Configuration.h>
+	<Error.h>
+	<iostream>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\functions.h
+	<Interval.h>
+	<math.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\utilities.h
+	<IntervalMatrix.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\intervalmatrix.h
+	<Matrix.h>
+	<Error.h>
+	<IntervalVector.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\matrix.h
+	<Configuration.h>
+	<Error.h>
+	<Vector.h>
+
+1288893974 source:c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\io.cpp
+	"io.h"
+	<iostream>
+	<iomanip>
+	<fstream>
+	<math.h>
+
+1277980382 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\io.h
+	<list>
+	<IntervalVector.h>
+
+1337385701 source:c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\inverse.cpp
+	"Inverse.h"
+	"chronos.h"
+	<cstdlib>
+	<iostream>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<ctime>
+
+1302793274 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\inverse.h
+	<map>
+	<Interval.h>
+	<IntervalVector.h>
+	"Tensor.h"
+	<vector>
+
+1333702806 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\tensor.h
+	<vector>
+	<Interval.h>
+	<IntervalVector.h>
+	<Functions.h>
+
+1288958105 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\chronos.h
+	<ctime>
+
+1368545351 source:c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\tensor.cpp
+	"Tensor.h"
+	"function.tsr"
+	<iostream>
+	<sstream>
+	<iomanip>
+	<fstream>
+	<Utilities.h>
+	<stdlib.h>
+
+1368547856 c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\function.tsr
+	"Tensor.h"
+
+1368545351 source:c:\users\jorge\desktop\investigação\papers\mypapers\quadrature\project_v2\quadv2\main.cpp
+	<cstdlib>
+	<vector>
+	<map>
+	<cmath>
+	"chronos.h"
+	"io.h"
+	"Tensor.h"
+	"Menu.h"
+	"Inverse.h"
+	<Interval.h>
+	<LongInterval.h>
+	<IntervalVector.h>
+	<Utilities.h>
+	<Functions.h>
+	<process.h>
+	<sstream>
+	<iomanip>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\longinterval.h
+	<Configuration.h>
+	<LongReal.h>
+	<IntervalVector.h>
+	<lr/Li.h>
+	<lr/DynMem.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\longreal.h
+	<Configuration.h>
+	<Vector.h>
+	<lr/Lr.h>
+	<lr/DynMem.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\lr\lr.h
+	<lr/LrDefs.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\lr\lrdefs.h
+	<stdlib.h>
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\lr\dynmem.h
+
+1308227181 c:\cygwin\home\jorge\profil-ibex\include\lr\li.h
+	<lr/Lr.h>
+

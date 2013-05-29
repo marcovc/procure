@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="QuadV2" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\QuadV2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\include" />
+				</Compiler>
+				<Linker>
+					<Add library="Bias" />
+					<Add library="Profil" />
+					<Add library="lr" />
+					<Add library="ProfilPackages" />
+					<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\QuadV2" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="Bias" />
+					<Add library="Profil" />
+					<Add library="lr" />
+					<Add library="ProfilPackages" />
+					<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\include" />
+		</Compiler>
+		<Linker>
+			<Add library="Bias" />
+			<Add library="Profil" />
+			<Add library="lr" />
+			<Add library="ProfilPackages" />
+			<Add directory="C:\cygwin\home\Jorge\Profil-IBEX\lib" />
+		</Linker>
+		<Unit filename="Inverse.cpp" />
+		<Unit filename="Inverse.h" />
+		<Unit filename="Menu.cpp" />
+		<Unit filename="Menu.h" />
+		<Unit filename="Tensor.cpp" />
+		<Unit filename="Tensor.h" />
+		<Unit filename="chronos.h" />
+		<Unit filename="currentSettings0.dat" />
+		<Unit filename="currentSettings1.dat" />
+		<Unit filename="currentSettings10.dat" />
+		<Unit filename="currentSettings11.dat" />
+		<Unit filename="currentSettings12.dat" />
+		<Unit filename="currentSettings13.dat" />
+		<Unit filename="currentSettings14.dat" />
+		<Unit filename="currentSettings15.dat" />
+		<Unit filename="currentSettings16.dat" />
+		<Unit filename="currentSettings17.dat" />
+		<Unit filename="currentSettings2.dat" />
+		<Unit filename="currentSettings3.dat" />
+		<Unit filename="currentSettings4.dat" />
+		<Unit filename="currentSettings5.dat" />
+		<Unit filename="currentSettings6.dat" />
+		<Unit filename="currentSettings7.dat" />
+		<Unit filename="currentSettings8.dat" />
+		<Unit filename="currentSettings9.dat" />
+		<Unit filename="function.tsr" />
+		<Unit filename="function0.box" />
+		<Unit filename="function0.dat" />
+		<Unit filename="function1.box" />
+		<Unit filename="function1.dat" />
+		<Unit filename="function10.box" />
+		<Unit filename="function10.dat" />
+		<Unit filename="function11.box" />
+		<Unit filename="function11.dat" />
+		<Unit filename="function12.box" />
+		<Unit filename="function12.dat" />
+		<Unit filename="function13.box" />
+		<Unit filename="function13.dat" />
+		<Unit filename="function14.box" />
+		<Unit filename="function14.dat" />
+		<Unit filename="function15.box" />
+		<Unit filename="function15.dat" />
+		<Unit filename="function16.box" />
+		<Unit filename="function16.dat" />
+		<Unit filename="function17.box" />
+		<Unit filename="function17.dat" />
+		<Unit filename="function2.box" />
+		<Unit filename="function2.dat" />
+		<Unit filename="function3.box" />
+		<Unit filename="function3.dat" />
+		<Unit filename="function4.box" />
+		<Unit filename="function4.dat" />
+		<Unit filename="function5.box" />
+		<Unit filename="function5.dat" />
+		<Unit filename="function6.box" />
+		<Unit filename="function6.dat" />
+		<Unit filename="function7.box" />
+		<Unit filename="function7.dat" />
+		<Unit filename="function8.box" />
+		<Unit filename="function8.dat" />
+		<Unit filename="function8_a.dat" />
+		<Unit filename="function8_b.dat" />
+		<Unit filename="function9.box" />
+		<Unit filename="function9.dat" />
+		<Unit filename="functionsList.dat" />
+		<Unit filename="io.cpp" />
+		<Unit filename="io.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

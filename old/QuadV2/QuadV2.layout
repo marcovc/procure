@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="Inverse.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="11854" topLine="403" />
+	</File>
+	<File name="Inverse.h" open="0" top="0" tabpos="9">
+		<Cursor position="4282" topLine="15" />
+	</File>
+	<File name="Menu.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="31399" topLine="1048" />
+	</File>
+	<File name="Menu.h" open="1" top="0" tabpos="5">
+		<Cursor position="196" topLine="9" />
+	</File>
+	<File name="Tensor.cpp" open="1" top="1" tabpos="8">
+		<Cursor position="41205" topLine="755" />
+	</File>
+	<File name="Tensor.h" open="1" top="0" tabpos="7">
+		<Cursor position="4041" topLine="83" />
+	</File>
+	<File name="function.tsr" open="1" top="0" tabpos="4">
+		<Cursor position="218" topLine="0" />
+	</File>
+	<File name="io.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="870" topLine="9" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="9333" topLine="344" />
+	</File>
+</CodeBlocks_layout_file>

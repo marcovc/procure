@@ -17,6 +17,7 @@
 #include <assert.h>
 #include <limits>
 #include <iterator>
+#include <utility>
 
 namespace Procure {
 namespace Detail {
@@ -38,6 +39,10 @@ struct IntervalWrapper
 
 	/// Initializes an interval to [lb,ub].
 	IntervalWrapper(const Real& lb,const Real& ub);
+
+	/// Initializes an interval to [p.first,p.second].
+	IntervalWrapper(const std::pair<Real,Real>& p) :
+		IntervalWrapper(p.first,p.second) {}
 
 	/// Initializes an interval from an interval of the wrapped type.
 	IntervalWrapper(const Impl&);

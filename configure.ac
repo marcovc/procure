@@ -197,6 +197,7 @@ else
 		AC_MSG_ERROR([Profil library was not detected. Please check the --with-interval-lib option.])
 	fi          
 fi
+AM_CONDITIONAL([HAVE_PROFIL],[${have_profil}])
 
 AC_LANG_POP([C++])
 
@@ -248,5 +249,6 @@ AX_PREFIX_CONFIG_H(procure/procure-config.hpp)
 AC_CONFIG_FILES(Makefile
                 procure/Makefile
                 tests/Makefile
-                examples/Makefile)
+                examples/Makefile
+                old/QuadV2/Makefile)
 AC_OUTPUT

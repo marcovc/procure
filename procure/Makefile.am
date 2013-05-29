@@ -9,14 +9,16 @@ lib_LTLIBRARIES = libprocure.la
 include_HEADERS = procure.hpp kernel/common.hpp kernel/interval.hpp \
 									kernel/interval/interval_gaol.hpp \
 									kernel/interval/interval_boost.hpp \
-									model/var.hpp model/expr.hpp
+									kernel/var.hpp kernel/expr.hpp kernel/func.hpp \
+									util/util.hpp quadrature/taylor.hpp
 
 #######################################
 # Build information for each library
 
 # Sources for libProcure
-libprocure_la_SOURCES = procure.cpp kernel/interval.cpp model/var.cpp \
-												model/expr.cpp
+libprocure_la_SOURCES = procure.cpp kernel/interval.cpp kernel/var.cpp \
+												kernel/expr.cpp kernel/func.cpp util/util.cpp \
+												quadrature/taylor.cpp
 
 # Linker options libTestProgram
 libprocure_la_LDFLAGS = $(CXX11_LDFLAGS)

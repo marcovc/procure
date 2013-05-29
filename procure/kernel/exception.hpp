@@ -19,6 +19,12 @@ struct Unsupported : std::logic_error
 		std::logic_error(what+" is unsupported") {}
 };
 
+struct Internal : std::logic_error
+{
+	Internal() :
+		std::logic_error("internal error - please report") {}
+};
+
 } // Exception
 } // Procure
 

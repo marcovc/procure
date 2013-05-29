@@ -4,7 +4,9 @@
 #include <procure/kernel/common.hpp>
 #include <procure/kernel/interval.hpp>
 #include <procure/kernel/exception.hpp>
-#include <procure/model/var.hpp>
-#include <procure/model/expr.hpp>
+#include <procure/kernel/func.hpp>
+
+#include <procure/kernel/var.hpp>
+#include <procure/kernel/expr.hpp>
 
 #endif // PROCURE_HPP_
